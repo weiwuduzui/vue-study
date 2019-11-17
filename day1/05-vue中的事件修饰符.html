@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../lib/bootstrap.min.css">
+    <script src="../lib/vue.js"></script>
+    <style>
+        .bg-color {
+            background-color: red;
+            height: 300px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id='app'> 
+        <!-- @click.stop可以防止冒泡的产生 -->
+        <!-- <div class="bg-color" @click='show'>
+           <input type="button" value="测试冒泡" @click.stop='stop'>
+        </div> -->
+
+        <!-- @click.prevent可以去掉某些标签的默认行为，例如：a标签的跳转行为 -->
+        <!-- <div>
+            <a href="https://www.baidu.com" @click.prevent='pervent'>百度一下</a>
+        </div> -->
+
+        <!-- @click.capture是通过事件驱动，从外部向内部引用，和冒泡相反 -->
+        <!-- <div class="bg-color" @click.capture='capture'>
+            <input type="button" value="测试冒泡" @click='show'>
+        </div> -->
+
+        <!-- @click.self只能停止自己的事件行为，并不影响其他的事件行为 -->
+        <!-- self和stop的区别，self只能停止自己的事件行为，stop可以停止所有的事件行为 -->
+        <!-- <div class="bg-color" @click.self='self'>
+            <input type="button" value="测试冒泡" @click='show'>
+        </div> -->
+
+        <!-- @click.once在浏览器渲染完成后，只能运行一次 -->
+        <div class="bg-color" @click='once'>
+            <input type="button" value="测试冒泡" @click.once='show'>
+        </div>
+        
+    </div>
+    <script>
+        var app= new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hi Vue!',                        
+            },
+            methods: {
+                show() {
+                    console.log('我来自div内部的input标签中')
+                    // console.log('我来自div标签中')
+                },
+                stop() {
+                    console.log('我来自input标签中  ')
+                },
+                prevent() {
+                    console.log('去掉a标签的默认跳转行为！')
+                },
+                capture() {
+                    console.log('我来自div标签中')
+                },
+                self() {
+                    console.log('我来自div内部的input标签中')
+                },
+                once() {
+                    console.log('我来自div标签中')
+                },
+            }
+        })
+    </script>
+</body>
+</html>

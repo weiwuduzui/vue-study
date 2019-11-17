@@ -17,13 +17,19 @@
         <!-- v-text表达式只能通过 v-text=‘值’ 的方式来引用，不支持字符串的拼接，并且回覆盖掉html标签中的值-->
         <!-- 运行结果 -->
         <!-- hello Vue! -->
-        <h1 v-text='msg'>'我来自Vue的v-text表达式'</h1>
+        <h1 v-text='msg'>我来自Vue的v-text表达式</h1>
+
+        <!-- v-html表达式只能通过 v-html=‘值’ 的方式来引用，可以解析内容中的html标签 -->
+        <!-- 运行结果 -->
+        <!-- 这是一个带html标签的的内容 -->
+        <h1 v-html='html'></h1>
     </div>
     <script>
         var app= new Vue({
             el: '#app',
             data: {
-                msg: 'hello Vue!'
+                msg: 'hello Vue!',
+                html: '<h1>这是一个带html标签的的内容</h1>'                       
             }
         })
     </script>

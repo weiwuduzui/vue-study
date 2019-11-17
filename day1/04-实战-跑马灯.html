@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../lib/bootstrap.min.css">
+    <script src="../lib/vue.js"></script>
+</head>
+<body>
+    <div id='app'> 
+        <input type="button" value="开始" @click='start'>
+        <input type="button" value="暂停" @click='stop'>
+
+        <h1>{{msg}}</h1>
+        </div>
+    </div>
+    <script>
+        var app= new Vue({
+            el: '#app',
+            data: {
+                msg: '中华人民共和国，万岁，万万岁！',  
+                app_interval: '',                      
+            },
+            methods: {
+                start() {  
+                    // 判断定时器是否有值  
+                    if ( this.app_interval == '' ) {
+                        // 设置定时器任务
+                        this.app_interval = setInterval( () => {
+                            // 截取字符串，并且返回
+                            var start = this.msg.slice(0, 1)
+                            var end = this.msg.slice(1)
+                            this.msg = end + start
+                            return this.msg
+                        }, 600)                 
+                    }      
+                },
+                stop() {
+                    // 清除定时器任务
+                    clearInterval( 
+                        this.app_interval, 
+                        // 将定时器任务的值设置为空
+                        this.app_interval = ''
+                    ) 
+                    
+                },
+            }
+        })
+    </script>
+</body>
+</html>

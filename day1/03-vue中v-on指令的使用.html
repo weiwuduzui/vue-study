@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../lib/bootstrap.min.css">
+    <script src="../lib/vue.js"></script>
+</head>
+<body>
+    <div id='app'> 
+        <!-- Vue中v-on指令用来绑定到一个方法上面，可以简写为 @ 方式 -->
+        <input type="button" value="登陆" v-on:click='login'>
+        <input type="button" value="注销" @click='logout'>
+
+        </div>
+    </div>
+    <script>
+        var app= new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hi Vue!',                        
+            },
+            methods: {
+                login() {
+                    alert('登陆成功!')
+                },
+                logout() {
+                    alert('退出成功!')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

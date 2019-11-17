@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../lib/bootstrap.min.css">
+    <script src="../lib/vue.js"></script>
+</head>
+<body>
+    <div id='app'> 
+        <!-- Vue中v-bind指令是用来绑定属性的，引用方式为v-bind:属性，可以简写为 @:属性 -->
+        <button type="button" class="btn btn-primary" v-bind:title='msg'>测试v-bind指令</button>       
+        <button type="button" class="btn btn-primary" :title='msg'>测试v-bind指令</button> 
+        <div>
+        <img src="../static/images/美女.jpeg" :title="click" style="width: 300px; height: 300px;">
+        </div>
+    </div>
+    <script>
+        var app= new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hi Vue!', 
+                click: '点我'           
+            },
+        })
+    </script>
+</body>
+</html>
