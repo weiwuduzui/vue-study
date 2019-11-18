@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../lib/bootstrap.min.css">
+    <script src="../lib/vue.js"></script>
+</head>
+<body>
+    <div id='app'>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+                <h3 class="panel-title">添加汽车品牌</h3>
+        </div>
+        <div class="panel-body inline">
+                <label>
+                    Id:
+                    <input type="text" v-model='id'>
+                </label>
+                <label>
+                    Name:
+                    <!-- Vue中内置的修饰符 -->
+                    <!-- <input type="text" v-model='name' @keyup.enter='add'> -->
+
+                    <!-- 自定义内置修饰符 -->
+                    <input type="text" v-model='name' @keyup.f2='add'>
+                </label>
+                <button type="button" class="btn btn-primary" @click='add'>添加</button>
+        </div>
+        <div>
+            <label>
+                搜索：
+                    <input type="text" v-model='keywords' v-focus>
+                    <button type="button" class="btn btn-primary" @click='search'>搜索</button>
+            </label>
+            
+
+        </div>
+    </div>
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Ctime</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for='item in search(keywords)'>
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <!-- 引用全局过滤器 -->
+                    <td>{{item.ctime | striftime }}</td>
+                    <td><a href="" @click.prevent='del(item.id)'>删除</a></td> 
+                </tr>
+            </tbody>
+        </table>
+        
+        </div>
+    </div>  
+    <script>
+        // 自定义内置修饰符
+        Vue.config.keyCodes.f2 = 113
+
+        // 定义一个全局的指令
+        Vue.directive('focus', {
+            inserted(el) {
+                el.focus()
+            }
+        })
+        // 定义全局过滤器
+        Vue.filter('striftime', function(time) {
+            var datetime = new Date(time)
+            var year = datetime.getFullYear()
+            var month = (datetime.getMonth() + 1).toString().padStart(2, '0')
+            var day = datetime.getDate().toString().padStart(2, '0')
+            var hour = datetime.getHours().toString().padStart(2, '0')
+            var min = datetime.getMinutes().toString().padStart(2, '0')
+            var sec = datetime.getSeconds().toString().padStart(2, '0')
+            // 格式化字符串
+            return `${year}-${month}-${day} ${hour}:${min}:${sec}`
+        })
+
+        var app= new Vue({
+            el: '#app',
+            data: {
+                id: '',
+                name: '',
+                keywords: '',
+                lists: [
+                    {
+                        'id':1, 'name': '奔驰', 'ctime': new Date()
+                    },  
+                    {
+                        'id':2, 'name': '宝马', 'ctime': new Date()
+                    },  
+                ]                      
+            },
+            methods: {
+                add() {
+                    // 向数组中添加一个对象
+                    this.lists.push({'id': this.id, 'name': this.name, 'ctime': new Date() })
+                    // 清空输入框的值
+                    this.id = this.name = ''
+                },
+                del(id) {
+                // 删除方法一
+                //    var index = this.lists.findIndex(element => {
+                //         if (element.id == id) {
+                //             return true                     
+                //         }
+                //     });
+                //     this.lists.splice(index, 1)
+
+                // 删除方法二
+                var index = this.lists.forEach(element => {
+                    if (element.id == id) {
+                        return this.lists.indexOf(id)
+                    }
+                });
+                    this.lists.splice(index, 1)
+                },
+                // 搜索方法
+                search(keywords) {
+                    newList = []
+                    this.lists.forEach(element => {
+                        if (element.name.includes(keywords)) {
+                            newList.push(element)
+                        }
+                    });
+                    return newList
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

@@ -10,17 +10,21 @@
 </head>
 <body>
     <div id='app'>
-        <!-- <h1>{{ msg | replace1('three') | replace2('one') }}</h1> -->
+        <!-- 过滤器只能使用在插值表达式和v-bind指令中 -->
+        <h1>{{ msg | replace1('three') | replace2('one') }}</h1>
         <h1 :title="msg | replace1('three')">{{msg}}</h1>
     </div>
 
     <script>
+        // 全局过滤器
         Vue.filter('replace1', function(msg, args){
+            // 正则全局替换
             return msg.replace(new RegExp(args,'g'), 'OnE')              
         })
 
         Vue.filter('replace2', function(msg, args){
             ret = msg.toLowerCase()    
+            // 正则全局替换
             return ret.replace(new RegExp(args, 'g'), 'ten')         
         })
 
