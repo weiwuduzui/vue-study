@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Document</title>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .fontsize {
+            font-size: 100px;
+        }
+
+        .bgc {
+            background-color: darkslateblue;
+        }
+
+        .active {
+            letter-spacing: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 通过数组的方式引用类属性 -->
+        <!-- <h1 :class="['red', 'fontsize' , 'bgc']">有志者事竟成！</h1> -->
+
+        <!-- 通过三元表达式方式 -->
+        <!-- <h1 :class="['red', 'fontsize' , 'bgc', 'active'?'':'active' ]">有志者事竟成！</h1> -->
+
+        <!-- 通过类对象来引用 -->
+        <!-- <h1 :class="{red:true, active:true}">有志者事竟成！</h1> -->
+
+        <!-- 通过类对象来引用 -->
+        <h1 :class="{red:flag}">有志者事竟成！</h1>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello world',
+                flag: false
+            },
+            methods: {
+                
+                
+            },
+        }) 
+    </script>
+</body>
+</html>

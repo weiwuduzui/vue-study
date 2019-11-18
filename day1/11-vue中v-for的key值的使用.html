@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <label>ID:</label><input type="text" v-model='id'>
+        <label>NAME:</label><input type="text" v-model='name'>
+        <input type="button" value="提交" @click='submit'>
+
+        <!-- key值只能使用字符串/数字类型 -->
+        <!-- key值可以解决一些数据的混乱问题，建议都添加上去 -->
+        <p v-for='item in msg' :key='item.id'>
+            <input type="checkbox">
+            id:{{item.id}} ---  name:{{item.name}}
+        </p>
+    </div>
+        
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                id: '',
+                name: '',
+                msg: [
+                    {'id':1, name:'张三'},
+                    {'id':2, name:'李四'},
+                    {'id':3, name:'王五'},
+                    {'id':4, name:'赵六'},
+                ]
+            },
+            methods: {
+               submit() {
+                //    this.msg.push({'id':this.id, 'name':this.name})
+                   this.msg.unshift({'id':this.id, 'name':this.name})
+               } 
+                
+            },
+        }) 
+    </script>
+</body>
+</html>

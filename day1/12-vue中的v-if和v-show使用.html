@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-if是添加/删除元素  v-show是通过display样式来控制 -->
+        <!-- v-if 在频繁切换的场景  有较高的性能开销 -->
+        <!-- v-show 有较高的初始渲染开销  -->
+        <input type="button" value="切换" @click='change'>
+        <h1 v-if='flag'>我是从v-if中来的</h1>
+        <h1 v-show='flag'>我是从v-show中来的</h1>
+        
+    </div>
+        
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello world',
+                flag: false
+            },
+            methods: {
+                change() {
+                    this.flag = !this.flag
+                }
+                
+            },
+        }) 
+    </script>
+</body>
+</html>

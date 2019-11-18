@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <title>Document</title>
+
+    <style>
+        .a {
+            background-color: red;
+        }
+    </style>
+</head> 
+<body>
+    <div id="app">
+        <!-- 通过对象引用方式 -->
+        <!-- <h1 :style="{color: 'red', 'font-size':'130px', 'background-color': 'green'}">北京好欣晴移动医疗科技有限公司</h1> -->
+
+        <!-- 通过引用vue中data中的属性 -->
+        <h1 :style="msg">北京好欣晴移动医疗科技有限公司</h1>
+
+        <!-- 通过引用vue中data中的属性 引用多个样式 -->
+        <h1 :style="[msg, msg1]">北京好欣晴移动医疗科技有限公司</h1>
+
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: {'color': 'red', 'font-size': '50px'},
+                msg1: {'background-color': 'green'}
+
+            },
+            methods: {
+                
+                
+            },
+        }) 
+    </script>
+</body>
+</html>
